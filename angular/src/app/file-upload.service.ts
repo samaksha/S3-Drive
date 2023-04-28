@@ -13,10 +13,10 @@ export class FileUploadService {
     this.baseUrl = environment.serverUrl;
   }
 
-  getPresignedUrl(bucket: string) {
+  getPresignedUrl() {
     const url = `${this.baseUrl}/presigned`;
     const $resp = this.http
-      .post<{ code: number; result: string }>(url, { bucket })
+      .post<{ code: number; result: any }>(url, {})
       .pipe(
         map((resp) => {
           return resp.result;
