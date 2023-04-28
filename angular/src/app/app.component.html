@@ -1,5 +1,5 @@
 <div class="container mt-2">
-  <h2>S3 Presigned URL Upload</h2>
+  <h2>S3 Drive</h2>
 
   <ng-container *ngIf="loading; else loaded">
     <div class="spinner-border" role="status">
@@ -8,13 +8,13 @@
   </ng-container>
 
   <ng-template #loaded>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label class="form-label">Bucket</label>
       <input type="text" class="form-control" [(ngModel)]="bucket" />
-    </div>
+    </div> -->
 
     <div class="mb-3">
-      <label class="form-label">Choose a file</label>
+      <label class="form-label">Choose a file (JPG, JPEF, PDF and below 10MB)</label>
       <input class="form-control" type="file" (change)="onFileChange($event)" />
     </div>
 
@@ -22,7 +22,7 @@
 
     <div class="mt-2" *ngIf="uploaded">
       <p>Content Type: {{ fileObj.type }}</p>
-      <p>Presigned URL: {{ fileUrl }}</p>
+      <p>Short URL: <a href = "{{ baseUrl + '/upload/' + fileUrl.shortId }}">{{ baseUrl + '/upload/' + fileUrl.shortId }}</a></p>
     </div>
   </ng-template>
 </div>
