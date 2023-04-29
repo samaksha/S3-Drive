@@ -1,6 +1,4 @@
-# S3 Presigned URL Uploads
-
-Tutorial on how to upload files using AWS S3 presigned urls.
+# S3 Drive
 
 ## How it works?
 
@@ -14,11 +12,10 @@ You need to create a presigned url using valid AWS credentials (the presigned ur
 
 ## How to run the sample code?
 
-We split our code in 3 sections:
+We split our code in 2 sections:
 
 - Express server app which will be used to generate presigned urls (must be authenticated to AWS).
 - An angular application that will fetch the presigned url and upload a file (using Angular owns HTTP library).
-- An axios example on how to upload using presigned urls (useful for React, vanilla JS or any JS framework).
 
 ### Run the Express app
 
@@ -56,12 +53,5 @@ _Note: keep in mind that the sample does NOT have explicit AWS credentials set, 
    yarn start
    ```
 
-### Run axios sample script
 
-1. Run script
-
-   ```bash
-   node src/axios.js
-   ```
-
-_Note: for both Angular app and the axios sample script, the server must be running. Also, inside the axios sample script, in the line 32 you must specify the bucket name._
+_Note: for both Angular app and the backend script, the server must be running. Also, inside the backend script, .ENV must be populated._
