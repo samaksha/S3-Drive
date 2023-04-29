@@ -10,11 +10,6 @@ import { nanoid } from "nanoid"
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const accessKeyId = "AKIAYT6ZBLIXH7I4FD3H";
-const secretAccessKey = "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";
-const region = "ap-south-1";
-const Bucket = "s3-nodejs-sam";
-
 connectToMongoDB("mongodb+srv://sam:sam@cluster0.6fj0e2q.mongodb.net/?retryWrites=true&w=majority").then(() =>
   console.log("Mongodb connected")
 );
