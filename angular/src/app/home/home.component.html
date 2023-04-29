@@ -20,22 +20,10 @@
       </div>
   
       <div class="form result " *ngIf="uploaded">
-        <!-- <p>Content Type: {{ fileObj.type }}</p> -->
         <p>Short URL: <a href = "{{ baseUrl + '/upload/' + fileUrl.shortId }}">{{ baseUrl + '/upload/' + fileUrl.shortId }}</a></p>
       </div>
     </div>
-      <!-- <div class="form">
-		<div class="form-element">
-			<label for="longurl">Enter link</label>
-			<input type="text" id="longurl" placeholder="http://site.com">
-		</div>
-		<div class="form-element">
-			<button id="create-short-url">Create Short URL</button>
-		</div>
-		<div class="result">
-			<a href="#" id="short-url" target="_blank"></a>
-		</div>
-	</div> -->
+
 
       <div class = "mt-4" *ngIf = "!authenticated">
         <p class="text-center"> Login to see short links created by you.</p>
@@ -47,21 +35,16 @@
                 <table id="list_urls">
                     <thead>
                         <tr>
-                            <!-- <th>LongURL</th> -->
                             <th>ShortURLs</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor = "let link of oldLinks">
-                            <!-- <td>LongURL</td> -->
                             <td><a href = "{{ baseUrl + '/upload/' + link }}">{{ baseUrl + '/upload/' + link}}</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <!-- <div *ngFor = "let link of oldLinks">
-                <p>Short URL: <a href = "{{ baseUrl + '/upload/' + link }}">{{ baseUrl + '/upload/' + link}}</a></p>
-            </div> -->
         </div>
 
     </ng-template>

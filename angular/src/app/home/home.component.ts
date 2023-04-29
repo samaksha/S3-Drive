@@ -91,8 +91,7 @@ export class HomeComponent implements OnInit {
       contentType,
       this.fileObj
     );
-    // var fileTemp!: File;
-    // this.fileObj = fileTemp;
+
     this.newUpload = false;
     this.uploaded = true;
     this.loading = false;
