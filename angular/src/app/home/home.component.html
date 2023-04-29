@@ -1,0 +1,71 @@
+<div>
+  
+    <ng-container *ngIf="loading; else loaded">
+        <div class = "spinner-div">
+      <div class="spinner-border " role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    </ng-container>
+    <!--  *ngIf="loading; else loaded"-->
+    <ng-template #loaded>
+    <div class = "form">
+      <div class="mb-3 form-element">
+        <label class="form-label">Choose a file (JPG, JPEF, PDF and below 10MB)</label>
+        <input class="form-control" type="file" (change)="onFileChange($event)" />
+      </div>
+  
+      <div class = "form-element">
+        <button class="btn btn-primary form-element" (click)="onFileUpload()">Upload</button>
+      </div>
+  
+      <div class="form result " *ngIf="uploaded">
+        <!-- <p>Content Type: {{ fileObj.type }}</p> -->
+        <p>Short URL: <a href = "{{ baseUrl + '/upload/' + fileUrl.shortId }}">{{ baseUrl + '/upload/' + fileUrl.shortId }}</a></p>
+      </div>
+    </div>
+      <!-- <div class="form">
+		<div class="form-element">
+			<label for="longurl">Enter link</label>
+			<input type="text" id="longurl" placeholder="http://site.com">
+		</div>
+		<div class="form-element">
+			<button id="create-short-url">Create Short URL</button>
+		</div>
+		<div class="result">
+			<a href="#" id="short-url" target="_blank"></a>
+		</div>
+	</div> -->
+
+      <div class = "mt-4" *ngIf = "!authenticated">
+        <p class="text-center"> Login to see short links created by you.</p>
+        </div>
+
+        <div class = "mt-4" *ngIf = "authenticated">
+            <div class="list">
+                <h2>Shorten links</h2>
+                <table id="list_urls">
+                    <thead>
+                        <tr>
+                            <!-- <th>LongURL</th> -->
+                            <th>ShortURLs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let link of oldLinks">
+                            <!-- <td>LongURL</td> -->
+                            <td><a href = "{{ baseUrl + '/upload/' + link }}">{{ baseUrl + '/upload/' + link}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div *ngFor = "let link of oldLinks">
+                <p>Short URL: <a href = "{{ baseUrl + '/upload/' + link }}">{{ baseUrl + '/upload/' + link}}</a></p>
+            </div> -->
+        </div>
+
+    </ng-template>
+
+
+  </div>
+  
