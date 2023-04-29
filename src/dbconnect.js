@@ -1,4 +1,3 @@
-
 import { mongoose } from "mongoose";
 mongoose.set("strictQuery", true);
 export async function connectToMongoDB(url) {

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { lastValueFrom, map } from 'rxjs';
+import {Emitters} from '../emitters/emitters';
+
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +30,8 @@ export class FileUploadService {
   uploadToS3(presignedUrl: string, contentType: string, file: File) {
     const headers = new HttpHeaders({ 'content-type': contentType });
     const $resp = this.http.put<any>(presignedUrl, file, { headers });
-    return lastValueFrom($resp);
+    const result = lastValueFrom($resp);
+    Emitters.reloadEmitter.emit(true);
+    return result;
   }
 }

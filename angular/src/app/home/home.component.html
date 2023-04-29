@@ -1,0 +1,54 @@
+<div>
+  
+    <ng-container *ngIf="loading; else loaded">
+        <div class = "spinner-div">
+      <div class="spinner-border " role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    </ng-container>
+    <!--  *ngIf="loading; else loaded"-->
+    <ng-template #loaded>
+    <div class = "form">
+      <div class="mb-3 form-element">
+        <label class="form-label">Choose a file (JPG, JPEF, PDF and below 10MB)</label>
+        <input class="form-control" type="file" (change)="onFileChange($event)" />
+      </div>
+  
+      <div class = "form-element">
+        <button class="btn btn-primary form-element" (click)="onFileUpload()">Upload</button>
+      </div>
+  
+      <div class="form result " *ngIf="uploaded">
+        <p>Short URL: <a href = "{{ baseUrl + '/upload/' + fileUrl.shortId }}">{{ baseUrl + '/upload/' + fileUrl.shortId }}</a></p>
+      </div>
+    </div>
+
+
+      <div class = "mt-4" *ngIf = "!authenticated">
+        <p class="text-center"> Login to see short links created by you.</p>
+        </div>
+
+        <div class = "mt-4" *ngIf = "authenticated">
+            <div class="list">
+                <h2>Shorten links</h2>
+                <table id="list_urls">
+                    <thead>
+                        <tr>
+                            <th>ShortURLs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let link of oldLinks">
+                            <td><a href = "{{ baseUrl + '/upload/' + link }}">{{ baseUrl + '/upload/' + link}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </ng-template>
+
+
+  </div>
+  
