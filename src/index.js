@@ -78,20 +78,28 @@ app.post("/presigned", auth, async (req, res) => {
       redirectURL: params.Key,
     });
 
+    var tmpLink = [];
+
     if (req.user) {
       const user = await USERS.findOne({ email: req.user.userEmail });
       user.links.push({ id: id, key: params.Key });
+      tmpLink = user.links;
       await user.save();
       console.log("pushed link");
     }
 
     return res.json({
       code: 200,
-      result: { presignedUrl: presignedUrl, shortId: id },
+      result: {
+        presignedUrl: presignedUrl,
+        shortId: id,
+        email: req.user.userEmail,
+        links: tmpLink,
+      },
     });
   } catch (err) {
     console.log(err);
-    return res.json({ code: 400 });
+    return res.json({ code: 400 }).send({ message: "failed" });
   }
 });
 
