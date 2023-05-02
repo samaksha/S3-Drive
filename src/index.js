@@ -79,11 +79,13 @@ app.post("/presigned", auth, async (req, res) => {
     });
 
     var tmpLink = [];
+    var str = "";
 
     if (req.user) {
       const user = await USERS.findOne({ email: req.user.userEmail });
       user.links.push({ id: id, key: params.Key });
       tmpLink = user.links;
+      str = req.user.userEmail;
       await user.save();
       console.log("pushed link");
     }
@@ -92,7 +94,7 @@ app.post("/presigned", auth, async (req, res) => {
       result: {
         presignedUrl: presignedUrl,
         shortId: id,
-        email: req.user.userEmail,
+        email: str,
         links: tmpLink,
       },
     });

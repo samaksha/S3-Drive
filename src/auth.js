@@ -5,8 +5,6 @@ const { sign, decode, verify } = jsonwebtoken;
 
 const auth = async (request, response, next) => {
   try {
-    //   get the token from the authorization header
-    // const token = await request.headers.authorization.split(" ")[1];
     console.log("request.cookies" + request.cookies);
     const token = request.cookies.access_token;
     console.log("token" + token);
