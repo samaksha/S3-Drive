@@ -39,7 +39,7 @@ const s3 = new S3Client({
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "[https://s3-drive-git-master-kumarsamaksha21.vercel.app, https://s3-drive-frontend.onrender.com]"
+    "https://s3-drive-frontend.onrender.com"
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
