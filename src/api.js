@@ -25,8 +25,8 @@ const API_SECRET = "this_is_secret";
 //   next();
 // });
 
-router.use(corsfunc());
-app.use(corsfunc());
+// router.use(corsfunc());
+// app.use(corsfunc());
 
 // body parser configuration
 app.use(express.json());
