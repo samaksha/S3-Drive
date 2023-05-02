@@ -90,7 +90,7 @@ app.post("/presigned", auth, async (req, res) => {
       await user.save();
       console.log("pushed link");
     }
-
+    await URL.save();
     return res.status(200).send({
       result: {
         presignedUrl: presignedUrl,
