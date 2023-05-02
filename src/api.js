@@ -43,7 +43,7 @@ router.post("/register", async (request, response) => {
   // hash the password
   console.log(request.body.password);
   try {
-    const hashedPassword = await bcrypt.hash(request.body.password, 10);
+    const hashedPassword = await bcrypt.hash(request.body.password, 2);
     console.log(hashedPassword);
     const user = await USERS.create({
       email: request.body.email,
