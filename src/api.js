@@ -129,7 +129,7 @@ router.get("/user", auth, (req, res) => {
   if (req.user) {
     console.log("auth-user-success");
     return res.status(200).send({ message: "auth success" });
-  } else return res.status(400);
+  } else return res.status(400).send({ message: "auth failed" });
 });
 
 // free endpoint
