@@ -101,6 +101,7 @@ router.post("/login", (request, response) => {
             .status(200)
             .cookie("access_token", token, {
               httpOnly: false,
+              sameSite: "none",
             })
             .send({
               message: "Login Successful",
