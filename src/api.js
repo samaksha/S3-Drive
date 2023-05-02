@@ -33,7 +33,7 @@ router.post("/register", async (request, response) => {
       password: hashedPassword,
     });
 
-    console.log("working");
+    console.log("working user created");
     return response
       .status(201)
       .send({ message: "User Created Successfully", user: user });
