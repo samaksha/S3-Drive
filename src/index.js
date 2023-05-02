@@ -88,8 +88,7 @@ app.post("/presigned", auth, async (req, res) => {
       console.log("pushed link");
     }
 
-    return res.json({
-      code: 200,
+    return res.status(200).sent({
       result: {
         presignedUrl: presignedUrl,
         shortId: id,
@@ -99,7 +98,7 @@ app.post("/presigned", auth, async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    return res.json({ code: 400 }).send({ message: "failed" });
+    return res.status(400).send({ message: err });
   }
 });
 
@@ -127,7 +126,7 @@ app.get("/upload/:id", async (req, res) => {
   var resURL = await getPresignedUrls(entry.redirectURL);
 
   if (!resURL || resURL.presignedUrls.length == 0)
-    return res.json({ code: 400 });
+    return res.status(400).send({ code: 400 });
 
   return res.redirect(resURL.presignedUrls[0]);
 });

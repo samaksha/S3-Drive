@@ -6,27 +6,10 @@ import auth from "./auth.js";
 import { USERS, URL } from "./models/url.js";
 import cors from "cors";
 // import { connectToMongoDB } from "./dbconnect.js";
-const corsfunc = cors;
 const { sign, decode, verify } = jsonwebtoken;
 const app = express();
 const router = Router();
 const API_SECRET = "this_is_secret";
-
-// router.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-//   );
-//   next();
-// });
-
-// router.use(corsfunc());
-// app.use(corsfunc());
 
 // body parser configuration
 app.use(express.json());
