@@ -80,6 +80,7 @@ app.post("/presigned", auth, async (req, res) => {
 
     var tmpLink = [];
     var str = "";
+    console.log("presigned working");
 
     if (req.user) {
       const user = await USERS.findOne({ email: req.user.userEmail });
@@ -94,8 +95,6 @@ app.post("/presigned", auth, async (req, res) => {
       result: {
         presignedUrl: presignedUrl,
         shortId: id,
-        email: str,
-        links: tmpLink,
       },
     });
   } catch (err) {
