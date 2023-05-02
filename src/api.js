@@ -1,9 +1,9 @@
-import { Router, response } from 'express';
-import express from 'express';
+import { Router, response } from "express";
+import express from "express";
 import bcrypt from "bcrypt";
-import jsonwebtoken from 'jsonwebtoken';
-import auth from './auth.js'
-import { USERS, URL } from "./models/url.js"
+import jsonwebtoken from "jsonwebtoken";
+import auth from "./auth.js";
+import { USERS, URL } from "./models/url.js";
 import cors from "cors";
 // import { connectToMongoDB } from "./dbconnect.js";
 const corsfunc = cors;
@@ -11,7 +11,6 @@ const { sign, decode, verify } = jsonwebtoken;
 const app = express();
 const router = Router();
 const API_SECRET = "this_is_secret";
-
 
 router.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -51,14 +50,11 @@ router.post("/register", async (request, response) => {
       password: hashedPassword,
     });
 
-    console.log('working');
-    return response.status(201).send(
-      {message: "User Created Successfully",user: user}
-    );
-
-  }
-
-  catch(e) {
+    console.log("working");
+    return response
+      .status(201)
+      .send({ message: "User Created Successfully", user: user });
+  } catch (e) {
     response.status(500).send({
       message: "Password was not hashed successfully",
       e,
@@ -82,7 +78,7 @@ router.post("/login", (request, response) => {
         .then((passwordCheck) => {
           // console.log(passwordCheck,request.body.password,user.password);
           // check if password matches
-          if(!passwordCheck) {
+          if (!passwordCheck) {
             console.log("how");
             return response.status(400).send({
               message: "Passwords does not match",
@@ -101,13 +97,16 @@ router.post("/login", (request, response) => {
           );
 
           //   return success response
-          response.status(200).cookie("access_token", token, {
-            httpOnly: true
-          }).send({
-            message: "Login Successful",
-            email: user.email,
-            token,
-          });
+          response
+            .status(200)
+            .cookie("access_token", token, {
+              httpOnly: true,
+            })
+            .send({
+              message: "Login Successful",
+              email: user.email,
+              token,
+            });
         })
         // catch error if password do not match
         .catch((error) => {
@@ -127,13 +126,10 @@ router.post("/login", (request, response) => {
 });
 
 router.get("/user", auth, (req, res) => {
-  if(req.user)
-  {
+  if (req.user) {
     console.log("auth-user-success");
-    return res.status(200).send({message: "auth success"});
-  }
-  else
-    return res.status(400);
+    return res.status(200).send({ message: "auth success" });
+  } else return res.status(400);
 });
 
 // free endpoint
@@ -147,19 +143,15 @@ router.get("/auth-endpoint", auth, (request, response) => {
   response.send({ message: "You are authorized to access me" });
 });
 
-
 router.get("/free", (request, response) => {
   response.json({ message: "You are free to access me anytime" });
 });
 
-router.post("/logout" ,(request, response) => {
+router.post("/logout", (request, response) => {
   return response
     .clearCookie("access_token")
     .status(200)
     .json({ message: "Successfully logged out" });
 });
 
-
-
 export default router;
-
